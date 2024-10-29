@@ -1,10 +1,5 @@
 #!/bin/zsh
 
-# Install xCode cli tools
-echo "Installing commandline tools..."
-xcode-select --install
-
-# Homebrew
 ## Install
 echo "Installing Brew..."
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -37,14 +32,7 @@ brew install sketchybar
 brew install borders
 brew install yabai
 
-### Science
-brew install mactex
-brew install hdf5
-brew install gnuplot
-brew install texlab
-
 ### Terminal
-brew install neovim
 brew install helix
 brew install starship
 brew install zsh-autosuggestions
@@ -52,12 +40,8 @@ brew install zsh-fast-syntax-highlighting
 brew install zoxide
 
 ### Nice to have
-brew install lulu
 brew install btop
 brew install svim
-brew install lazygit
-brew install wireguard-go
-brew install dooit
 
 ### Custom HEAD only forks
 brew install fnnn --head # nnn fork (changed colors, keymappings)
@@ -65,39 +49,22 @@ brew install fnnn --head # nnn fork (changed colors, keymappings)
 ## Casks
 echo "Installing Brew Casks..."
 ### Terminals & Browsers
-brew install --cask alacritty
-brew install --cask kitty
 brew install --cask orion
 
 ### Office
-brew install --cask inkscape
-brew install --cask libreoffice
-brew install --cask zoom
 brew install --cask meetingbar
-brew install --cask skim
 brew install --cask vlc
 
 ### Reversing
-brew install --cask machoview
 brew install --cask hex-fiend
-brew install --cask cutter
 brew install --cask sloth
 
-### Nice to have
-brew install --cask alfred
-brew install --cask spotify
 
 ### Fonts
 brew install --cask sf-symbols
 brew install --cask font-hack-nerd-font
 brew install --cask font-jetbrains-mono
 brew install --cask font-fira-code
-
-# Mac App Store Apps
-echo "Installing Mac App Store Apps..."
-mas install 1451685025 #Wireguard
-mas install 497799835 #xCode
-mas install 1480933944 #Vimari
 
 # macOS Settings
 echo "Changing macOS defaults..."
@@ -143,7 +110,7 @@ sudo defaults write /Library/Preferences/com.apple.airport.bt.plist bluetoothCoe
 
 # Copying and checking out configuration files
 echo "Planting Configuration Files..."
-[ ! -d "$HOME/dotfiles" ] && git clone --bare git@github.com:FelixKratz/dotfiles.git $HOME/dotfiles
+[ ! -d "$HOME/dotfiles" ] && git clone --bare git@github.com:edeng23/dotfiles.git $HOME/dotfiles
 git --git-dir=$HOME/dotfiles/ --work-tree=$HOME checkout master
 
 # Installing Fonts
@@ -162,27 +129,10 @@ rm -rf /tmp/simple-completion-language-server
 source $HOME/.zshrc
 cfg config --local status.showUntrackedFiles no
 
-# Python Packages (mainly for data science)
-echo "Installing Python Packages..."
-curl https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh | sh
-source $HOME/.zshrc
-conda install -c apple tensorflow-deps
-conda install -c conda-forge pybind11
-conda install matplotlib
-conda install jupyterlab
-conda install seaborn
-conda install opencv
-conda install joblib
-conda install pytables
-pip install tensorflow-macos
-pip install tensorflow-metal
-pip install debugpy
-pip install sklearn
-
 # Start Services
 echo "Starting Services (grant permissions)..."
 brew services start skhd
-brew services start fyabai
+yabai --start-service 
 brew services start sketchybar
 brew services start borders
 brew services start svim
