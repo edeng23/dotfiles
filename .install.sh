@@ -75,7 +75,6 @@ defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock "mru-spaces" -bool "false"
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 defaults write com.apple.LaunchServices LSQuarantine -bool false
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 defaults write NSGlobalDomain KeyRepeat -int 1
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
@@ -131,7 +130,7 @@ cfg config --local status.showUntrackedFiles no
 
 # Start Services
 echo "Starting Services (grant permissions)..."
-brew services start skhd
+skhd --start-service
 yabai --start-service 
 brew services start sketchybar
 brew services start borders
