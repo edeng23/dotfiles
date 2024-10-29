@@ -53,7 +53,6 @@ brew install --cask orion
 
 ### Office
 brew install --cask meetingbar
-brew install --cask vlc
 
 ### Reversing
 brew install --cask hex-fiend
@@ -79,7 +78,7 @@ defaults write NSGlobalDomain KeyRepeat -int 1
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 defaults write NSGlobalDomain _HIHideMenuBar -bool true
-defaults write NSGlobalDomain AppleHighlightColor -string "0.65098 0.85490 0.58431"
+efaults write NSGlobalDomain AppleHighlightColor -string "0.65098 0.85490 0.58431"
 defaults write NSGlobalDomain AppleAccentColor -int 1
 defaults write com.apple.screencapture location -string "$HOME/Desktop"
 defaults write com.apple.screencapture disable-shadow -bool true
@@ -109,7 +108,10 @@ sudo defaults write /Library/Preferences/com.apple.airport.bt.plist bluetoothCoe
 
 # Copying and checking out configuration files
 echo "Planting Configuration Files..."
-[ ! -d "$HOME/dotfiles" ] && git clone --bare git@github.com:edeng23/dotfiles.git $HOME/dotfiles
+if [ ! -d "$HOME/dotfiles" ]; then
+    git clone --bare git@github.com:edeng23/dotfiles.git $HOME/dotfiles
+fi
+git --git-dir=$HOME/dotfiles/ fetch
 git --git-dir=$HOME/dotfiles/ --work-tree=$HOME checkout master
 
 # Installing Fonts
