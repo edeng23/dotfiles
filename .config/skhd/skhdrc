@@ -4,11 +4,20 @@ cmd - return : open -n -a "Terminal"
 # open chrome 
 cmd + shift - return : open -n -a "Google Chrome" 
 
-# moves focus between windows in the current focused display
-alt - h : yabai -m window --focus west
+# moves focus between windows in the current focused display, or moves to adjacent space if at edge
+alt - h : \
+    yabai -m window --focus west || \
+    (yabai -m query --windows --window | jq '.frame | select(.x == 0)' > /dev/null && yabai -m display --focus west)
 alt - j : yabai -m window --focus south
 alt - k : yabai -m window --focus north
-alt - l : yabai -m window --focus east
+
+
+# moves focus between windows in the current focused display, or moves to adjacent display if at edge
+alt - l : \
+    yabai -m window --focus east || \
+    (yabai -m query --windows --window | jq '.frame | select(.x == 0)' > /dev/null && yabai -m display --focus east)
+
+
 
 # moves focus between spaces 
 alt - 1 : yabai -m space --focus 1
@@ -21,6 +30,10 @@ alt - 7 : yabai -m space --focus 7
 alt - 8 : yabai -m space --focus 8
 alt - 9 : yabai -m space --focus 9
 alt - 0  : yabai -m space --focus 10
+
+#change focus between external displays (left and right)
+alt - s: yabai -m display --focus west
+alt - g: yabai -m display --focus east
 
 # delete focused space
 alt - q : yabai -m space --destroy
