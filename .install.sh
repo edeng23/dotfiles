@@ -46,7 +46,6 @@ brew install zoxide
 
 ### Nice to have
 brew install btop
-brew install svim
 
 ### Custom HEAD only forks
 brew install fnnn --head # nnn fork (changed colors, keymappings)
@@ -141,7 +140,6 @@ skhd --start-service
 yabai --start-service 
 brew services start sketchybar
 brew services start borders
-brew services start svim
 
 csrutil status
 echo "(optional) Disable SIP for advanced yabai features."
